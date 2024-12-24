@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import homeBg from "../images/homeBg.webp";
 import { motion } from "motion/react";
 import { FadeIn } from "../Motion/VarientAnim";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { useNavigate } from "react-router";
+import { NotesContext } from "../contextApi/NotesContext";
 
 const Home = () => {
+     const {selectedMenu, setSelectedMenu} = useContext(NotesContext);
+    const navigate = useNavigate()
   return (
     <div className="h-screen w-screen relative">
       <img
@@ -22,11 +27,13 @@ const Home = () => {
         >
           KEEP NOTES
         </motion.h1>
-        <motion.p className="text-zinc-200 text-sm"
-        variants={FadeIn("left", 0.5, 0)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: true }}>
+        <motion.p
+          className="text-zinc-200 text-sm pb-5"
+          variants={FadeIn("left", 0.5, 0)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: true }}
+        >
           Keep Notes is a sleek and intuitive note-taking app designed to help
           you capture, organize, and manage your thoughts and ideas
           effortlessly. Whether you're jotting down detailed plans or important
@@ -34,6 +41,21 @@ const Home = () => {
           its clean and user-friendly interface, you can easily create, edit,
           and categorize your notes.
         </motion.p>
+
+        <motion.div
+          className="border-2 border-zinc-200 rounded-md py-2 px-3 text-center w-fit mx-auto flex items-center gap-2 cursor-pointer"
+          variants={FadeIn("up", 0.8, 0)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: true }}
+          onClick={() => {
+            navigate("/notes")
+            setSelectedMenu("notes")
+        }} // Use navigate function here
+        >
+          <p className="text-white text-sm font-semibold">Get Start</p>
+          <FaLongArrowAltRight className="w-5 h-5 text-white" />
+        </motion.div>
       </div>
     </div>
   );

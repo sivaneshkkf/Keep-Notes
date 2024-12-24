@@ -23,6 +23,7 @@ const App = () => {
   const [addNoteModalOpen, setAddNoteModalOpen] = useState(false);
   const [editNoteModalOpen, setEditNoteModalOpen] = useState(false);
   const [selectedNote, setSelectedNote] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState("home");
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -66,7 +67,8 @@ const App = () => {
           value={{
             notesList,
             setNotesList,
-            selectedNote, setSelectedNote
+            selectedNote, setSelectedNote,
+            selectedMenu, setSelectedMenu
           }}
         >
           <div className="bg-bg flex h-screen overflow-hidden">

@@ -3,14 +3,14 @@ import { FaHome } from "react-icons/fa";
 import { FaNoteSticky } from "react-icons/fa6";
 import { IoLogIn } from "react-icons/io5";
 import { IoLogOutSharp } from "react-icons/io5";
-import { LoginContext, ModalContext } from "../contextApi/NotesContext";
+import { LoginContext, ModalContext, NotesContext } from "../contextApi/NotesContext";
 import { FaNotesMedical } from "react-icons/fa";
 import logo from "../images/logoNotes.png";
 import { Link } from "react-router";
 import { se } from "date-fns/locale";
 
 const NavBar = () => {
-  const [selectedMenu, setSelectedMenu] = useState("home");
+  const {selectedMenu, setSelectedMenu} = useContext(NotesContext);
   const {
     signInModalOpen,
     setSigninModalOpen,
