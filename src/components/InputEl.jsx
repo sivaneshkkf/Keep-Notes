@@ -3,7 +3,7 @@ import React from "react";
 const InputEl = ({ type = "text", id, label, register, error, value, onChange }) => {
   return (
     <div>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} className="text-sm text-text">{label}</label>
       <input
         type="text"
         id={id}
