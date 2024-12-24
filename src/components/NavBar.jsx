@@ -3,14 +3,18 @@ import { FaHome } from "react-icons/fa";
 import { FaNoteSticky } from "react-icons/fa6";
 import { IoLogIn } from "react-icons/io5";
 import { IoLogOutSharp } from "react-icons/io5";
-import { LoginContext, ModalContext, NotesContext } from "../contextApi/NotesContext";
+import {
+  LoginContext,
+  ModalContext,
+  NotesContext,
+} from "../contextApi/NotesContext";
 import { FaNotesMedical } from "react-icons/fa";
 import logo from "../images/logoNotes.png";
 import { Link } from "react-router";
 import { se } from "date-fns/locale";
 
 const NavBar = () => {
-  const {selectedMenu, setSelectedMenu} = useContext(NotesContext);
+  const { selectedMenu, setSelectedMenu } = useContext(NotesContext);
   const {
     signInModalOpen,
     setSigninModalOpen,
@@ -23,13 +27,15 @@ const NavBar = () => {
 
   return (
     <div className="bg-primary flex flex-col items-center pt-5 pb-8 h-screen w-fit gap-12">
-      <img src={logo} alt="logo" className="w-10" />
+      <div className="bg-primaryDark w-12 h-12 pr-2 py-3 pl-1 flex justify-center items-center rounded-full border border-blue-950 shadow-md">
+        <img src={logo} alt="logo" className="w-10" />
+      </div>
       <div className="flex flex-col h-full justify-between items-center w-full">
         <div className="flex flex-col justify-center text-white font-bold text-sm">
           <LiEl
             text="Home"
             link="/"
-            id='home'
+            id="home"
             selectedMenu={selectedMenu}
             onClick={() => setSelectedMenu("home")}
           >
@@ -38,7 +44,7 @@ const NavBar = () => {
           <LiEl
             text="Notes"
             link="/notes"
-            id='notes'
+            id="notes"
             selectedMenu={selectedMenu}
             onClick={() => setSelectedMenu("notes")}
           >
@@ -47,16 +53,17 @@ const NavBar = () => {
           <LiEl
             text="Add"
             link="/notes"
-            id='add'
+            id="add"
             onClick={() => {
-              setSelectedMenu("add")
+              setSelectedMenu("add");
               if (!userDetails) {
                 setSigninModalOpen(true);
               } else {
                 setAddNoteModalOpen(true);
               }
             }}
-            selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu}
+            selectedMenu={selectedMenu}
+            setSelectedMenu={setSelectedMenu}
           >
             <FaNotesMedical className="w-5 h-5" />
           </LiEl>
@@ -107,12 +114,18 @@ const LiEl = ({ text, children, onClick, link, selectedMenu, id }) => {
   return (
     <Link
       to={link}
-      className={`flex items-center gap-2 cursor-pointer hover:text-gray-300 px-3 py-2 ${selectedMenu === id? 'bg-primaryDark':""}`}
+      className={`flex items-center gap-2 cursor-pointer hover:text-gray-300 px-4 py-2 ${
+        selectedMenu === id ? "bg-primaryDark" : ""
+      }`}
       onClick={onClick}
     >
       {children && <span>{children}</span>}
       <span className="text-sm font-medium">{text}</span>
-      <div className={`w-2 h-2 bg-white rounded-full ${selectedMenu === id ? "visible" : "invisible"}`}></div>
+      <div
+        className={`w-2 h-2 bg-white rounded-full ${
+          selectedMenu === id ? "visible" : "invisible"
+        }`}
+      ></div>
     </Link>
   );
 };
